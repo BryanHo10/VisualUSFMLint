@@ -177,8 +177,8 @@
     <Reference Include="USFMToolsSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\USFMToolsSharp.1.0.0\lib\netstandard1.0\USFMToolsSharp.dll</HintPath>
     </Reference>
-    <Reference Include="USFMToolsSharp.Linter, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\USFMToolsSharp.Linter.0.1.0\lib\netstandard2.0\USFMToolsSharp.Linter.dll</HintPath>
+    <Reference Include="USFMToolsSharp.Linter, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\USFMToolsSharp.Linter.0.2.0\lib\netstandard2.0\USFMToolsSharp.Linter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

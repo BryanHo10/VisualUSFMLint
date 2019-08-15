@@ -34,12 +34,14 @@ namespace DemoUSFMLinter
             var parser = new USFMParser(new List<string> { "s5" });
             var usfm = new USFMDocument();
             DataGridViewSelectedCellCollection SelectedFiles = fileDataGrid.SelectedCells;
+            USFMLinter lint = new USFMLinter();
             if (fileDataGrid.Rows.Count > 1)
             {
                 foreach (DataGridViewCell SelectFile in SelectedFiles)
                 {
                     if (SelectFile.OwningRow.Index != fileDataGrid.RowCount - 1)
                     {
+                        
 
                         var cell = SelectFile.OwningRow.Cells[0];
                         if (cell.Value == null)
@@ -50,22 +52,24 @@ namespace DemoUSFMLinter
 
                         var text = File.ReadAllText(filename);
                         usfm.Insert(parser.ParseFromString(text));
+                        List<LinterResult> linterResults = await lint.LintAsync(usfm);
+                        await DisplayErrors(linterResults,filename);
+                        usfm = new USFMDocument();
                     }
                 }
             }
-            USFMLinter lint = new USFMLinter();
-            List<LinterResult> linterResults = await lint.LintAsync(usfm);
-            await DisplayErrors(linterResults);
+            
+            
             BtnCheck.Enabled = true;
             BtnAddFiles.Enabled = true;
 
         }
-        private async Task DisplayErrors(List<LinterResult> errors)
+        private async Task DisplayErrors(List<LinterResult> errors,string filename)
         {
             
             foreach (LinterResult result in errors)
             {
-                Msg_Linter.Text += $"Level: ({result.Level}) at {result.Position} | Message: {result.Message}{Environment.NewLine}";
+                Msg_Linter.Text += $"Level: ({result.Level}) in {Path.GetFileName(filename)} | Message: {result.Message}{Environment.NewLine}";
             }
         }
         private void BtnAddFiles_Click(object sender, EventArgs e)

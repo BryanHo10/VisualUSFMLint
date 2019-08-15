@@ -27,7 +27,10 @@ namespace DemoUSFMLinter
 
         private async void BtnCheck_Click(object sender, EventArgs e)
         {
+
             Msg_Linter.ResetText();
+            BtnCheck.Enabled = false;
+            BtnAddFiles.Enabled = false;
             var parser = new USFMParser(new List<string> { "s5" });
             var usfm = new USFMDocument();
             DataGridViewSelectedCellCollection SelectedFiles = fileDataGrid.SelectedCells;
@@ -53,7 +56,8 @@ namespace DemoUSFMLinter
             USFMLinter lint = new USFMLinter();
             List<LinterResult> linterResults = await lint.LintAsync(usfm);
             await DisplayErrors(linterResults);
-
+            BtnCheck.Enabled = true;
+            BtnAddFiles.Enabled = true;
 
         }
         private async Task DisplayErrors(List<LinterResult> errors)

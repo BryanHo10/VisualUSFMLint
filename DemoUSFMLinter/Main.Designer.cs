@@ -66,6 +66,7 @@ namespace DemoUSFMLinter
             this.Msg_Linter.Location = new System.Drawing.Point(450, 60);
             this.Msg_Linter.Multiline = true;
             this.Msg_Linter.Name = "Msg_Linter";
+            this.Msg_Linter.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Msg_Linter.Size = new System.Drawing.Size(282, 373);
             this.Msg_Linter.TabIndex = 2;
             // 
